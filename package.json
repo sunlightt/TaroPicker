@@ -44,22 +44,11 @@
     "@babel/runtime": "^7.7.7",
     "@tarojs/components": "3.0.15",
     "@tarojs/react": "3.0.15",
-    "@tarojs/redux": "^2.2.10",
     "@tarojs/runtime": "^3.0.15",
     "@tarojs/taro": "^3.0.16",
-    "@tarojs/taro-qq": "^2.2.10",
     "async-validator": "^3.4.0",
-    "cac": "^6.6.1",
-    "classnames": "^2.2.6",
     "react": "^16.10.0",
-    "react-dom": "^16.10.0",
-    "react-redux": "^7.2.0",
-    "redux": "^4.0.0",
-    "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0",
-    "taro-plugin-canvas": "1.0.9",
-    "taro-skeleton": "2.0.2",
-    "taro-ui": "^3.0.0-alpha.3"
+    "react-dom": "^16.10.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.0",
