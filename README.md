@@ -1,4 +1,4 @@
-# nodes
+# taro_picker
 
 [![Build Status][travis-img]][travis-url]
 [![Coverage Status][codecov-img]][codecov-url]
@@ -14,10 +14,10 @@
 ## Installation
 
 ```shell
-$ npm install nodes
+$ npm install taro_picker
 
 # or yarn
-$ yarn add nodes
+$ yarn add taro_picker
 ```
 
 ## Usage
@@ -25,8 +25,8 @@ $ yarn add nodes
 <!-- TODO: Introduction of Usage -->
 
 ```javascript
-const nodes = require('nodes')
-const result = nodes('w')
+const { Picker } = require('taro_picker')
+<Picker></Picker>
 // result => 'w@zce.me'
 ```
 

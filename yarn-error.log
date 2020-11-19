@@ -29,7 +29,7 @@ Trace:
 npm manifest: 
   {
     "name": "taro_picker",
-    "version": "0.1.3",
+    "version": "0.1.5",
     "description": "Awesome node modules.",
     "keywords": [
       "nodes",
