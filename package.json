@@ -1,6 +1,6 @@
 {
-  "name": "TaroPicker",
-  "version": "0.1.0",
+  "name": "taro_picker",
+  "version": "0.1.2",
   "description": "Awesome node modules.",
   "keywords": [
     "nodes",
@@ -41,7 +41,6 @@
     ]
   },
   "dependencies": {
-    "cac": "^6.6.1",
     "@babel/runtime": "^7.7.7",
     "@tarojs/components": "3.0.15",
     "@tarojs/react": "3.0.15",
@@ -50,6 +49,7 @@
     "@tarojs/taro": "^3.0.16",
     "@tarojs/taro-qq": "^2.2.10",
     "async-validator": "^3.4.0",
+    "cac": "^6.6.1",
     "classnames": "^2.2.6",
     "react": "^16.10.0",
     "react-dom": "^16.10.0",
@@ -62,8 +62,6 @@
     "taro-ui": "^3.0.0-alpha.3"
   },
   "devDependencies": {
-    "jest": "^26.4.2",
-    "standard": "^14.3.4",
     "@babel/core": "^7.8.0",
     "@babel/plugin-syntax-object-rest-spread": "^7.8.3",
     "@tarojs/mini-runner": "3.0.15",
@@ -82,7 +80,9 @@
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-react": "^7.8.2",
     "eslint-plugin-react-hooks": "^1.6.1",
+    "jest": "^26.4.2",
     "postcss-jsx": "^0.36.4",
+    "standard": "^14.3.4",
     "stylelint": "9.3.0",
     "typescript": "^3.7.0"
   },
