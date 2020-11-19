@@ -14,22 +14,22 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: canceled
-      at Interface.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:137008:13)
-      at Interface.emit (events.js:315:20)
-      at Interface._ttyWrite (readline.js:866:16)
-      at ReadStream.onkeypress (readline.js:205:10)
-      at ReadStream.emit (events.js:315:20)
-      at emitKeys (internal/readline/utils.js:335:14)
-      at emitKeys.next (<anonymous>)
-      at ReadStream.onData (readline.js:1133:36)
-      at ReadStream.emit (events.js:315:20)
-      at addChunk (_stream_readable.js:295:12)
+  Error: https://registry.npm.taobao.org/-/user/org.couchdb.user:yhb: [conflict] User yhb already exists
+      at Request.params.callback [as _callback] (/usr/local/lib/node_modules/yarn/lib/cli.js:66987:18)
+      at Request.self.callback (/usr/local/lib/node_modules/yarn/lib/cli.js:140748:22)
+      at Request.emit (events.js:315:20)
+      at Request.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:141720:10)
+      at Request.emit (events.js:315:20)
+      at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:141642:12)
+      at Object.onceWrapper (events.js:421:28)
+      at IncomingMessage.emit (events.js:327:22)
+      at endReadableNT (_stream_readable.js:1221:12)
+      at processTicksAndRejections (internal/process/task_queues.js:84:21)
 
 npm manifest: 
   {
-    "name": "taro-picker",
-    "version": "0.1.2",
+    "name": "taro_picker",
+    "version": "0.1.3",
     "description": "Awesome node modules.",
     "keywords": [
       "nodes",
@@ -73,22 +73,11 @@ npm manifest:
       "@babel/runtime": "^7.7.7",
       "@tarojs/components": "3.0.15",
       "@tarojs/react": "3.0.15",
-      "@tarojs/redux": "^2.2.10",
       "@tarojs/runtime": "^3.0.15",
       "@tarojs/taro": "^3.0.16",
-      "@tarojs/taro-qq": "^2.2.10",
       "async-validator": "^3.4.0",
-      "cac": "^6.6.1",
-      "classnames": "^2.2.6",
       "react": "^16.10.0",
-      "react-dom": "^16.10.0",
-      "react-redux": "^7.2.0",
-      "redux": "^4.0.0",
-      "redux-logger": "^3.0.6",
-      "redux-thunk": "^2.3.0",
-      "taro-plugin-canvas": "1.0.9",
-      "taro-skeleton": "2.0.2",
-      "taro-ui": "^3.0.0-alpha.3"
+      "react-dom": "^16.10.0"
     },
     "devDependencies": {
       "@babel/core": "^7.8.0",
