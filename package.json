@@ -1,0 +1,92 @@
+{
+  "name": "TaroPicker",
+  "version": "0.1.0",
+  "description": "Awesome node modules.",
+  "keywords": [
+    "nodes",
+    "cli",
+    "ysl"
+  ],
+  "homepage": "https://github.com/YSLg#readme",
+  "bugs": {
+    "url": "https://github.com/YSLg/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YSLg.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "TaroPicker",
+    "email": "",
+    "url": "https://github.com/YSLg"
+  },
+  "main": "lib/index.js",
+  "bin": "bin/cli.js",
+  "files": [
+    "bin",
+    "lib"
+  ],
+  "scripts": {
+    "test": "standard --fix && jest --coverage"
+  },
+  "standard": {
+    "env": [
+      "jest"
+    ]
+  },
+  "renovate": {
+    "extends": [
+      "ysl"
+    ]
+  },
+  "dependencies": {
+    "cac": "^6.6.1",
+    "@babel/runtime": "^7.7.7",
+    "@tarojs/components": "3.0.15",
+    "@tarojs/react": "3.0.15",
+    "@tarojs/redux": "^2.2.10",
+    "@tarojs/runtime": "^3.0.15",
+    "@tarojs/taro": "^3.0.16",
+    "@tarojs/taro-qq": "^2.2.10",
+    "async-validator": "^3.4.0",
+    "classnames": "^2.2.6",
+    "react": "^16.10.0",
+    "react-dom": "^16.10.0",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.0",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
+    "taro-plugin-canvas": "1.0.9",
+    "taro-skeleton": "2.0.2",
+    "taro-ui": "^3.0.0-alpha.3"
+  },
+  "devDependencies": {
+    "jest": "^26.4.2",
+    "standard": "^14.3.4",
+    "@babel/core": "^7.8.0",
+    "@babel/plugin-syntax-object-rest-spread": "^7.8.3",
+    "@tarojs/mini-runner": "3.0.15",
+    "@tarojs/plugin-babel": "^2.2.10",
+    "@tarojs/plugin-uglifyjs": "^1.3.45",
+    "@tarojs/webpack-runner": "^3.0.16",
+    "@types/classnames": "^2.2.11",
+    "@types/react": "^16.0.0",
+    "@types/webpack-env": "^1.13.6",
+    "@typescript-eslint/eslint-plugin": "^2.x",
+    "@typescript-eslint/parser": "^2.x",
+    "babel-preset-taro": "^3.0.16",
+    "dayjs": "^1.9.6",
+    "eslint": "^6.8.0",
+    "eslint-config-taro": "3.0.15",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-react": "^7.8.2",
+    "eslint-plugin-react-hooks": "^1.6.1",
+    "postcss-jsx": "^0.36.4",
+    "stylelint": "9.3.0",
+    "typescript": "^3.7.0"
+  },
+  "engines": {
+    "node": ">=10"
+  }
+}
