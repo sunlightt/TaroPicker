@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, ScrollView } from "@tarojs/components";
+import { View, ScrollView, Text } from "@tarojs/components";
 import "./index.less";
 type PageStateProps = {
   pickerData: Array<string>
@@ -17,18 +17,22 @@ type PageState = {
   childListDom: any
   scrollTop: number
   pickerDataLength: number
+  init: number
+  innerHTML: string
 };
-class Roller extends Component<PageStateProps, PageState> {
+class Picker extends Component<PageStateProps, PageState> {
   state = {
-    rollerLi: 60,
+    init: 0,
+    rollerLi: 40,
     pvcDesDom: {
       scrollHeight: 0,
       clientHeight: 0,
       childNodes: [],
     },
     childListDom: [],
-    scrollTop: 60,
-    pickerDataLength: 0
+    scrollTop: 40,
+    pickerDataLength: 0,
+    innerHTML: ''
   };
   pvcDesDom = React.createRef();
   componentDidMount() {
@@ -39,7 +43,7 @@ class Roller extends Component<PageStateProps, PageState> {
     const childLength = childNodes.length;
     let childList = [];
     for (let i = 0; i < childLength; i++) {
-      if (childNodes[i].nodeType === 1 && childNodes[i].innerHTML) {
+      if (childNodes[i].nodeType === 1 && childNodes[i].childNodes) {
         childList.push(childNodes[i]);
       }
     }
@@ -48,74 +52,56 @@ class Roller extends Component<PageStateProps, PageState> {
     });
   }
   onScroll = (e) => {
-    const { childListDom, pickerDataLength } = this.state;
-    const { getCount, pickerData } = this.props;
-    if (pickerDataLength !== pickerData.length) {
-      this.getChildNodes()
-      this.setState({
-        pickerDataLength: pickerData.length
-      })
-    }
-    /**
-     * 当前可视 / 日期宽度 / 2 = 得到选中区域到可视区域顶端距离
-    */
-    const surplus = Math.floor(
-      this.pvcDesDom.current.clientHeight / this.state.rollerLi / 2
-    );
-    // scrollTop / 日期宽度 = 当前选中的日期
-    const count = Math.floor(
-      e.detail.scrollTop /
-        this.state.rollerLi
-    );
-    // 判断用户向上滑动还是向下滑动
-    // const direction = e.detail.scrollTop-this.state.scrollTop
-    /**
-     * 向上取整当用于滑动的时候提前将下一个元素改变颜色
-    */
-    // const countCeil = Math.ceil(
-    //   (surplus * this.state.rollerLi -
-    //     surplus * this.state.rollerLi +
-    //     e.detail.scrollTop) /
-    //     this.state.rollerLi
-    // )
-    // childListDom[countCeil].setAttribute("style", "font-weight: blob; font-size: 30Px; color: #FF6538")
-    // if (countCeil > 0) {
-    //   childListDom[countCeil - 1].setAttribute("style", "font-weight: 100;")
-    // }
-    // if (countCeil + 1 < this.props.pickerData.length) {
-    //   childListDom[countCeil + 1].setAttribute("style","font-weight: 100;")
-    // }
+    
     // 用户选中的时间
-    getCount(childListDom[count].innerHTML)
-    this.setState({
-      scrollTop: e.detail.scrollTop
-    })
+    try {
+        const { childListDom, pickerDataLength } = this.state;
+        const { getCount, pickerData } = this.props;
+        if (pickerDataLength !== pickerData.length) {
+          this.getChildNodes()
+          this.setState({
+            pickerDataLength: pickerData.length
+          })
+        }
+        // scrollTop / 日期宽度 = 当前选中的日期
+        const count = Math.floor(
+          e.detail.scrollTop /
+            this.state.rollerLi
+        );
+        if (childListDom[count].textContent !== this.state.innerHTML) {
+          this.setState({
+            innerHTML: childListDom[count+2].textContent
+          })
+          getCount(childListDom[count+2].textContent)
+        }
+    } catch (err) {
+      console.log(err);
+    }
   };
-
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      init: nextProps.initDate
+    })
+  }
   render() {
     const scrollStyle = {
-      height: "180Px",
+      height: "200Px",
     };
-    const Threshold = 20;
-    const { initDate, pickerData } = this.props;
+    const { pickerData } = this.props;
     return (
       <View className="Roller">
         <View className="roller_wrapper">
           <ScrollView
             scrollY
-            scrollWithAnimation
-            lowerThreshold={Threshold}
-            upperThreshold={Threshold}
             style={scrollStyle}
-            scrollTop={initDate}
+            // scrollTop={this.state.init}
             className="roller"
-            onScroll={this.onScroll}
+            onScroll={this.onScroll.bind(this)}
             ref={this.pvcDesDom}
           >
-            <View className="roller_li"></View>
-            {pickerData.map((e) => (
-              <View key={e} className="roller_li">
-                {e}
+            {pickerData.map((e, index) => (
+              <View key={index} className="roller_li">
+                <Text>{e}</Text>
               </View>
             ))}
           </ScrollView>
@@ -125,4 +111,4 @@ class Roller extends Component<PageStateProps, PageState> {
   }
 }
 
-export default Roller;
+export default Picker;

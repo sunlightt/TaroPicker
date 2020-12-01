@@ -1,0 +1,117 @@
+.timerPickerContainer {
+  display: inline-block;
+  .nameOfTitle {
+    font-size: 28px;
+    color: #505659;
+    white-space: nowrap;
+    margin-top: 6px;
+    margin-right: 12px;
+    .textStyle {
+      margin-right:8px;
+    }
+    .iconStyle{
+      margin-bottom: 12px;
+      color: #000;
+    }
+    .nameOfTitle_text{
+      margin-right: 8px;
+    }
+  }
+  .mask {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    animation: c 0.3s ease forwards;
+  }
+  .pickerCustom {
+    font-size: 12px;
+    animation: a 0.3s ease forwards;
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    z-index: 5000;
+    // transform: translateY(100%);
+    backface-visibility: hidden;
+    // transition: transform 0.3s;
+    .pickerCustom_hd {
+      display: flex;
+      padding: 18px 30px;
+      background-color: #fff;
+      position: relative;
+      text-align: center;
+      .pickerCustom_action:first-child {
+        text-align: left;
+        color: #888;
+        display: block;
+        flex: 1;
+        font-size: 24px;
+      }
+      .pickerCustom_action:last-child {
+        text-align: right;
+        color: #1aad19;
+        display: block;
+        flex: 1;
+        font-size: 24px;
+      }
+    }
+    .pickerCustom_hd:after {
+      content: " ";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      height: 1px;
+      border-bottom: 1px solid #e5e5e5;
+      color: #e5e5e5;
+      transform-origin: 0 100%;
+      transform-origin: 0 100%;
+      transform: scaleY(0.5);
+      transform: scaleY(0.5);
+    }
+    .pickerCustom_bd {
+      display: flex;
+      position: relative;
+      background-color: #fff;
+      overflow: hidden;
+      flex-direction: column;
+      .timeBox {
+          display: flex;
+          justify-content: space-around;
+          line-height: 50px;
+          font-size: 36px;
+          padding: 20px 13px;
+          box-sizing: border-box; 
+          .active {
+              color: #2a5d9d;
+          }
+      }
+      .iconTrash {
+          font-size: 40px;
+          color:#b0b1b2;
+          padding: 20px 13px;
+        
+      }
+    }
+  }
+}
+@keyframes c {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes a {
+  0% {
+    transform: translate3d(0, 100%, 0);
+  }
+  100% {
+    transform: translateZ(0);
+  }
+}

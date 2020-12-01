@@ -1,21 +1,17 @@
-import { View } from '@tarojs/components';
-import React, { Component } from 'react';
-import Picker from '../Picker';
-import dayjs from "dayjs";
-import "./index.less";
+import { View } from '@tarojs/components'
+import React, { Component } from 'react'
+import Picker from '../Picker'
+import dayjs from 'dayjs'
+import './index.less'
 
 interface typeProps {
   onEnd(e: string): void
   checked?: boolean
-  startEnd?: boolean
   yearData: Array<string>
   initDate: string
 }
 interface PageState {
-  yearScroll: number
-  monthScroll: number
   monthData: Array<string>
-  dayScroll: number
   dayData: Array<string>
   dayDataCopy: any
   startyear: string
@@ -26,186 +22,164 @@ interface PageState {
 }
 class ComPicker extends Component<typeProps, PageState> {
   state = {
-    startyear: dayjs().format("YYYY"),
-    startmonth: dayjs().format("MM"),
-    startday: dayjs().format("DD"),
-    yearScroll: 0,
-    monthScroll: 0,
+    startyear: dayjs().format('YYYY'),
+    startmonth: dayjs().format('MM'),
+    startday: dayjs().format('DD'),
     monthData: [
-      "01",
-      "02",
-      "03",
-      "04",
-      "05",
-      "06",
-      "07",
-      "08",
-      "09",
-      "10",
-      "11",
-      "12",
+      '01',
+      '02',
+      '03',
+      '04',
+      '05',
+      '06',
+      '07',
+      '08',
+      '09',
+      '10',
+      '11',
+      '12',
     ],
-    dayScroll: 0,
     dayData: [
-      "01",
-      "02",
-      "03",
-      "04",
-      "05",
-      "06",
-      "07",
-      "08",
-      "09",
-      "10",
-      "11",
-      "12",
-      "13",
-      "14",
-      "15",
-      "16",
-      "17",
-      "18",
-      "19",
-      "20",
-      "21",
-      "22",
-      "23",
-      "24",
-      "25",
-      "26",
-      "27",
-      "28",
-      "29",
-      "30",
-      "31",
+      '01',
+      '02',
+      '03',
+      '04',
+      '05',
+      '06',
+      '07',
+      '08',
+      '09',
+      '10',
+      '11',
+      '12',
+      '13',
+      '14',
+      '15',
+      '16',
+      '17',
+      '18',
+      '19',
+      '20',
+      '21',
+      '22',
+      '23',
+      '24',
+      '25',
+      '26',
+      '27',
+      '28',
+      '29',
+      '30',
+      '31',
     ],
-    dayDataCopy: [
-      "01",
-      "02",
-      "03",
-      "04",
-      "05",
-      "06",
-      "07",
-      "08",
-      "09",
-      "10",
-      "11",
-      "12",
-      "13",
-      "14",
-      "15",
-      "16",
-      "17",
-      "18",
-      "19",
-      "20",
-      "21",
-      "22",
-      "23",
-      "24",
-      "25",
-      "26",
-      "27",
-      "28",
-      "29",
-      "30",
-      "31",
-    ].slice(0, dayjs().daysInMonth()),
+    dayDataCopy: [],
     yearMonthDay: '',
-    yearMonth: ''
+    yearMonth: '',
   }
   componentDidMount() {
-    const { yearData } = this.props
-    this.setState({
-      yearScroll:
-        yearData.findIndex((e) => dayjs().format("YYYY") == e) * 60,
-      monthScroll:
-        this.state.monthData.findIndex((e) => dayjs().format("MM") == e) * 60,
-      dayScroll:
-        this.state.dayData.findIndex((e) => dayjs().format("DD") == e) * 60,
-    });
+    const dayData = JSON.parse(JSON.stringify(this.state.dayData))
+    this.setState(
+      {
+        dayDataCopy: ['', '', ...dayData.slice(0, dayjs().daysInMonth()), '', ''],
+      })
   }
-  getYearData = e => {
+  getYearData = (e) => {
     const { startmonth } = this.state
+    const [, Month, Day ] = this.props.initDate.split("-")
     this.setState({
       startyear: e,
-    });
+    })
     const dayData = JSON.parse(JSON.stringify(this.state.dayData))
-    this.setState({
-      dayDataCopy: dayData.slice(0, dayjs(`${e}-${startmonth}`).daysInMonth())
-    }, () => this.listenData())
+    this.setState(
+      {
+        dayDataCopy: ['', '', ...dayData.slice(
+          0,
+          dayjs(`${e}-${startmonth}`).daysInMonth()
+        ), '', ''],
+      },
+      () => this.listenData(`${e}-${Month}-${Day}`)
+    )
   }
-  getMonthData = e => {
+  getMonthData = (e) => {
+    this.setState({
+        dayDataCopy: [],
+    })
     const { startyear } = this.state
+    const [Year, , Day ] = this.props.initDate.split("-")
     this.setState({
       startmonth: e,
-    });
-    
+    })
     const dayData = JSON.parse(JSON.stringify(this.state.dayData))
-    this.setState({
-      dayDataCopy: dayData.slice(0, dayjs(`${startyear}-${e}`).daysInMonth())
-    }, () => this.listenData())
+    this.setState(
+      {
+        dayDataCopy: ['', '', ...dayData.slice(0, dayjs(`${startyear}-${e}`).daysInMonth()), '', ''],
+      },
+      () => this.listenData(`${Year}-${e}-${Day}`)
+    )
   }
-  getDayData = e => {
-    this.setState({
-      startday: e,
-    },() => this.listenData());
-    
+  getDayData = (e) => {
+    const [Year, Month] = this.props.initDate.split("-")
+    this.setState(
+      {
+        startday: e,
+      },
+      () => this.listenData(`${Year}-${Month}-${e}`)
+    )
   }
-
-  listenData = () => {
-    const { startyear, startmonth, startday, yearMonthDay, yearMonth } = this.state
-    const { onEnd, checked } = this.props
-    // checked === false : 月份选择器
-    if (!checked && yearMonth !== `${startyear}-${startmonth}`) {
-      console.log(`${startyear}-${startmonth}`)
-      onEnd(`${startyear}-${startmonth}`)
-      this.setState({ yearMonth: `${startyear}-${startmonth}` })
-    // checked === false : 日期选择器
-    } else if (checked && yearMonthDay !== `${startyear}-${startmonth}-${startday}`) {
-      onEnd(`${startyear}-${startmonth}-${startday}`)
-      this.setState({yearMonthDay : `${startyear}-${startmonth}-${startday}`})
-    }
+  listenData = (val) => {
+    const { onEnd } = this.props
+     if (this.state.yearMonthDay !== val) {
+      onEnd(val)
+      this.setState({ yearMonthDay: val })
+     }
+  }
+  componentWillReceiveProps(nextProps) {
+    const [Year, Month] = nextProps.initDate.split("-")
+    const dayData = JSON.parse(JSON.stringify(this.state.dayData))
+    this.setState(
+      {
+        dayDataCopy: ['', '', ...dayData.slice(0, dayjs(`${Year}-${Month}`).daysInMonth()), '', ''],
+      })
   }
   render() {
-    const { checked=true } = this.props
-    const { yearScroll, monthScroll, monthData, dayScroll, dayDataCopy, dayData } = this.state
+    const { monthData, dayDataCopy } = this.state
     const { yearData } = this.props
+    const [ Year, Month, Day ] = this.props.initDate.split("-")
+    const yearScrollTop = yearData.findIndex((e) => Year === e.toString()) * 40
+    const monthScrollTop = monthData.findIndex((e) => Month === e.toString()) * 40
+    const dayScrollTop = this.state.dayData.findIndex((e) => Day === e.toString()) * 40
     return (
       <View className="BwPicker_box">
-        <View className="selete_line">
-          <View className="selete_line_li"></View>
-          {
-            checked ? (
-              <View className="selete_line_li"></View>
-            ) : null
-          }
-          <View className="selete_line_li"></View>
+        <View className="selete_line_top">
+         
+        </View>
+        <View className="selete_line_bottom">
+          
         </View>
         <Picker
-            initDate={yearScroll}
-            getCount={this.getYearData.bind(this)}
-            pickerData={yearData}
+          initDate={
+            yearScrollTop
+          }
+          getCount={this.getYearData.bind(this)}
+          pickerData={['', '', ...yearData, '', '']}
         ></Picker>
         <Picker
-            initDate={monthScroll}
-            getCount={this.getMonthData.bind(this)}
-            pickerData={monthData}
+          initDate={
+            monthScrollTop
+          }
+          getCount={this.getMonthData.bind(this)}
+          pickerData={['', '', ...monthData, '', '']}
         ></Picker>
-        {
-          checked ? (
-            <Picker
-              initDate={dayScroll}
-              getCount={this.getDayData.bind(this)}
-              pickerData={dayDataCopy}
-            ></Picker>
-          ) : null
-        }
-        
+        <Picker
+          initDate={
+            dayScrollTop
+          }
+          getCount={this.getDayData.bind(this)}
+          pickerData={[...dayDataCopy]}
+        ></Picker>
       </View>
-    );
+    )
   }
 }
 
-export default ComPicker;
+export default ComPicker
