@@ -25,9 +25,14 @@ $ yarn add taro_picker
 <!-- TODO: Introduction of Usage -->
 
 ```javascript
-const { Picker } = require('taro_picker')
-<Picker></Picker>
-// result => 'w@zce.me'
+const { TimerPicker } = require('taro_picker')
+<TimerPicker
+  selectorChecked="选择日期"
+  start={startTimer}
+  end={endTimer}
+  bottomHeight
+  getValue={this.getDate.bind(this)}
+/>
 ```
 
 ## API
