@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { View, Text } from '@tarojs/components'
-import { AtModal } from "taro-ui";
 import dayjs from 'dayjs'
-import Picker from '@/components/PickerIndex'
+import Picker from '../PickerIndex'
 import './index.less'
 
 
@@ -52,7 +51,6 @@ const TimerPicker = (props) => {
     const styleBottom = {
         bottom: '0px'
     }
-    console.log('timer picker mask show', maskShow)
     return (
         <View className="timerPickerContainer">
         <View className='nameOfTitle' onClick={panelPop}><Text className="nameOfTitle_text">{ selectorChecked }</Text><View className='at-icon at-icon-chevron-down iconStyle'></View></View>

@@ -94,7 +94,7 @@ class Picker extends Component<PageStateProps, PageState> {
           <ScrollView
             scrollY
             style={scrollStyle}
-            // scrollTop={this.state.init}
+            scrollTop={this.state.init}
             className="roller"
             onScroll={this.onScroll.bind(this)}
             ref={this.pvcDesDom}
